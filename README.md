@@ -1,0 +1,2 @@
+# orm_configuration
+* @EnableOrmConfiguration
