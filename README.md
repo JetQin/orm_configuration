@@ -1,4 +1,6 @@
-# @EnableOrmConfiguration (implement hibernate config use java config annotation)
+# @EnableOrmConfiguration 
+
+# implement hibernate config use java config annotation
 
 # Parameters:
 
