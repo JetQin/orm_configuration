@@ -1,10 +1,10 @@
 # @EnableOrmConfiguration 
 
-# implement hibernate config use java config annotation
+### implement hibernate config use java config annotation
 
 # Parameters:
 
-#####Display sql or not
+#####display sql or not
 
 showSql: boolean        default value false;  
 
