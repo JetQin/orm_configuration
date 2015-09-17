@@ -3,7 +3,7 @@
 
 	<groupId>com.github.jetqin</groupId>
 	<artifactId>orm</artifactId>
-	<version>1.0.6-SNAPSHOT</version>
+	<version>1.0.6</version>
 	<packaging>jar</packaging>
 	<description>Orm configuration using java config</description>
 
@@ -27,7 +27,7 @@
 		<connection>scm:git:git@github.com:JetQin/orm_configuration.git</connection>
 		<developerConnection>scm:git:git@github.com:JetQin/orm_configuration.git</developerConnection>
 		<url>git@github.com:JetQin/orm_configuration.git</url>
-		<tag>orm-1.0.5</tag>
+		<tag>orm-1.0.6</tag>
 	</scm>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
