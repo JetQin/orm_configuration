@@ -3,7 +3,7 @@
 
 	<groupId>com.github.jetqin</groupId>
 	<artifactId>orm</artifactId>
-	<version>1.0.11-SNAPSHOT</version>
+	<version>1.0.14-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<description>Orm configuration using java config</description>
 
@@ -119,7 +119,7 @@
 							<extensions>true</extensions>
 							<configuration>
 								<serverId>ossrh</serverId>
-								<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+								<nexusUrl>https://oss.sonatype.org/content/repositories/snapshots</nexusUrl>
 								<autoReleaseAfterClose>true</autoReleaseAfterClose>
 							</configuration>
 						</plugin>
