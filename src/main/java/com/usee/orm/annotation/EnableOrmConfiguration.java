@@ -1,5 +1,5 @@
 /** 
- * Project Name:orm.configuration 
+O * Project Name:orm.configuration 
  * File Name:EnableOrmConfiguration.java 
  * Package Name:com.usee.orm.configuration
  * Date:Sep 15, 201510:28:42 AM 

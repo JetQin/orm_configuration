@@ -2,14 +2,32 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.usee</groupId>
-	<artifactId>orm.configuration</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<groupId>com.github.jetqin</groupId>
+	<artifactId>orm</artifactId>
+	<version>1.0.0-RELEASE</version>
 	<packaging>jar</packaging>
 
-	<name>orm.configuration</name>
-	<url>http://maven.apache.org</url>
-
+	<name>orm</name>
+	<url>https://github.com/JetQin/orm_configuration</url>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<id>jetq</id>
+			<name>Jet Qin</name>
+			<email>qinjet@gmail.com</email>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:git@github.com:JetQin/orm_configuration.git</connection>
+		<developerConnection>scm:git:git@github.com:JetQin/orm_configuration.git</developerConnection>
+		<url>git@github.com:JetQin/orm_configuration</url>
+	</scm>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.2.1.RELEASE</spring.version>
@@ -17,8 +35,9 @@
 		<ehcahe.version>2.6.11</ehcahe.version>
 		<lombok.version>1.16.6</lombok.version>
 		<hibernate.version>5.0.1.Final</hibernate.version>
-		
+
 		<maven-release-plugin.version>2.5.2</maven-release-plugin.version>
+		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -69,13 +88,36 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>oss</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>oss</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+		</repository>
+	</distributionManagement>
 	<build>
 		<pluginManagement>
 			<plugins>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
-			        <artifactId>maven-release-plugin</artifactId>
-			        <version>${maven-release-plugin.version}</version>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>${maven-release-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-gpg-plugin</artifactId>
+					<version>${maven-gpg-plugin.version}</version>
+					<executions>
+						<execution>
+							<phase>verify</phase>
+							<goals>
+								<goal>sign</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
 			</plugins>
 		</pluginManagement>
