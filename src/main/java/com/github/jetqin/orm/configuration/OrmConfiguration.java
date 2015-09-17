@@ -6,7 +6,7 @@
  * Copyright (c) 2015, jianlei.qin@sktlab.com All Rights Reserved. 
  * 
  */
-package com.usee.orm.configuration;
+package com.github.jetqin.orm.configuration;
 
 import java.util.Properties;
 

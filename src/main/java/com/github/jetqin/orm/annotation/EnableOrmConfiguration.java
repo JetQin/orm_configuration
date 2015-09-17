@@ -6,7 +6,7 @@ O * Project Name:orm.configuration
  * Copyright (c) 2015, jianlei.qin@sktlab.com All Rights Reserved. 
  * 
  */
-package com.usee.orm.annotation;
+package com.github.jetqin.orm.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -16,7 +16,7 @@ import java.lang.annotation.Target;
 
 import org.springframework.context.annotation.Import;
 
-import com.usee.orm.constants.OrmType;
+import com.github.jetqin.orm.constants.OrmType;
 
 /** 
  * ClassName: EnableOrmConfiguration  

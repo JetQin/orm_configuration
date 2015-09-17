@@ -6,7 +6,7 @@
  * Copyright (c) 2015, jianlei.qin@sktlab.com All Rights Reserved. 
  * 
  */
-package com.usee.orm.constants;
+package com.github.jetqin.orm.constants;
 
 
 

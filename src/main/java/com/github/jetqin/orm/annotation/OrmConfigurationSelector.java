@@ -6,14 +6,14 @@
  * Copyright (c) 2015, jianlei.qin@sktlab.com All Rights Reserved. 
  * 
  */
-package com.usee.orm.annotation;
+package com.github.jetqin.orm.annotation;
 
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.type.AnnotationMetadata;
 
-import com.usee.orm.configuration.HibernateOrmConfiguration;
-import com.usee.orm.configuration.JpaOrmConfiguration;
-import com.usee.orm.constants.OrmType;
+import com.github.jetqin.orm.configuration.HibernateOrmConfiguration;
+import com.github.jetqin.orm.configuration.JpaOrmConfiguration;
+import com.github.jetqin.orm.constants.OrmType;
 
 /** 
  * ClassName: OrmConfigurationSelector  
