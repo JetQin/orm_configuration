@@ -5,6 +5,7 @@
 	<artifactId>orm</artifactId>
 	<version>1.0.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
+	<description>Orm configuration using java config</description>
 
 	<name>orm</name>
 	<url>https://github.com/JetQin/orm_configuration</url>
