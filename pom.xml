@@ -3,7 +3,7 @@
 
 	<groupId>com.github.jetqin</groupId>
 	<artifactId>orm</artifactId>
-	<version>1.0.14-SNAPSHOT</version>
+	<version>1.0.16-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<description>Orm configuration using java config</description>
 
@@ -154,13 +154,14 @@
 							<artifactId>maven-gpg-plugin</artifactId>
 							<version>${maven-gpg-plugin.version}</version>
 							<executions>
-								<execution>
-									<phase>verify</phase>
-									<goals>
-										<goal>sign</goal>
-									</goals>
-								</execution>
-							</executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
 						</plugin>
 					</plugins>
 				</pluginManagement>
