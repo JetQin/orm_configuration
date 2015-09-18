@@ -37,7 +37,7 @@
 		<lombok.version>1.16.6</lombok.version>
 		<hibernate.version>5.0.1.Final</hibernate.version>
 
-		<org.sonatype.plugins.version>1.6.6</org.sonatype.plugins.version>
+		<org.sonatype.plugins.version>1.6.5</org.sonatype.plugins.version>
 		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
 		<maven-javadoc-plugin.version>2.9.1</maven-javadoc-plugin.version>
 		<maven-source-plugin.version>2.2.1</maven-source-plugin.version>
