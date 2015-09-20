@@ -31,4 +31,17 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 }
+
+```
+
+# Maven dependency
+
+```
+
+<dependency>
+		<groupId>com.github.jetqin</groupId>
+		<artifactId>orm</artifactId>
+		<version>1.0.19</version>
+</dependency>
+
 ```
