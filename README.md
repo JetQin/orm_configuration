@@ -24,11 +24,39 @@ OrmType: enum           default value OrmType.Hibernate;
 ```
 @ComponentScan
 @EnableAutoConfiguration
-@EnableOrmConfiguration(showSql=false,packageToScan="com.usee",OrmType=OrmType.Hibernate)
+@EnableOrmConfiguration(showSql=false,packageToScan="com.usee",type=OrmType.Hibernate)
 public class Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 }
+
+```
+
+# Configuration Properties
+
+```
+connection.driver_class = oracle.jdbc.OracleDriver
+connection.url = jdbc:oracle:thin:@localhost:1521:ORCL
+connection.username = username
+connection.password = password
+hibernate.dialect = org.hibernate.dialect.Oracle9iDialect
+
+hibernate.dbcp.initialSize = 10
+hibernate.dbcp.maxActive = 100
+hibernate.dbcp.maxIdle = 10
+hibernate.dbcp.minIdle = 10
+```
+
+# Maven dependency
+
+```
+
+<dependency>
+		<groupId>com.github.jetqin</groupId>
+		<artifactId>orm</artifactId>
+		<version>1.0.20</version>
+</dependency>
+
 ```
