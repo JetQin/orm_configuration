@@ -24,7 +24,7 @@ OrmType: enum           default value OrmType.Hibernate;
 ```
 @ComponentScan
 @EnableAutoConfiguration
-@EnableOrmConfiguration(showSql=false,packageToScan="com.usee",OrmType=OrmType.Hibernate)
+@EnableOrmConfiguration(showSql=false,packageToScan="com.usee",type=OrmType.Hibernate)
 public class Application {
 
     public static void main(String[] args) {
@@ -56,7 +56,7 @@ hibernate.dbcp.minIdle = 10
 <dependency>
 		<groupId>com.github.jetqin</groupId>
 		<artifactId>orm</artifactId>
-		<version>1.0.19</version>
+		<version>1.0.20</version>
 </dependency>
 
 ```
