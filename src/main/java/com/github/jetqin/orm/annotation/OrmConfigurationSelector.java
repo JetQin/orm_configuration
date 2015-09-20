@@ -30,7 +30,7 @@ public class OrmConfigurationSelector implements ImportSelector
 	 */
 	public String[] selectImports(AnnotationMetadata importingClassMetadata)
 	{
-		OrmType type = (OrmType)importingClassMetadata.getAnnotationAttributes(EnableOrmConfiguration.class.getName()).get("ormType");
+		OrmType type = (OrmType)importingClassMetadata.getAnnotationAttributes(EnableOrmConfiguration.class.getName()).get("type");
 		if(OrmType.Hibernate.equals(type))
 		{
 			return new String[]{HibernateOrmConfiguration.class.getName()};
