@@ -34,6 +34,21 @@ public class Application {
 
 ```
 
+# Configuration Properties
+
+```
+connection.driver_class = oracle.jdbc.OracleDriver
+connection.url = jdbc:oracle:thin:@localhost:1521:ORCL
+connection.username = username
+connection.password = password
+hibernate.dialect = org.hibernate.dialect.Oracle9iDialect
+
+hibernate.dbcp.initialSize = 10
+hibernate.dbcp.maxActive = 100
+hibernate.dbcp.maxIdle = 10
+hibernate.dbcp.minIdle = 10
+```
+
 # Maven dependency
 
 ```
