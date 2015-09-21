@@ -56,7 +56,7 @@ hibernate.dbcp.minIdle = 10
 <dependency>
 		<groupId>com.github.jetqin</groupId>
 		<artifactId>orm</artifactId>
-		<version>1.0.20</version>
+		<version>1.1.5</version>
 </dependency>
 
 ```
