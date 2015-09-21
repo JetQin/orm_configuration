@@ -1,9 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.github.jetqin</groupId>
 	<artifactId>orm</artifactId>
-	<version>1.1.4-SNAPSHOT</version>
+	<version>1.1.5-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<description>Orm configuration using java config</description>
 
@@ -27,8 +28,8 @@
 		<connection>scm:git:git@github.com:JetQin/orm_configuration.git</connection>
 		<developerConnection>scm:git:git@github.com:JetQin/orm_configuration.git</developerConnection>
 		<url>https://github.com/JetQin/orm_configuration.git</url>
-	  <tag>HEAD</tag>
-  </scm>
+		<tag>HEAD</tag>
+	</scm>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.2.1.RELEASE</spring.version>
@@ -41,6 +42,7 @@
 		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
 		<maven-javadoc-plugin.version>2.9.1</maven-javadoc-plugin.version>
 		<maven-source-plugin.version>2.2.1</maven-source-plugin.version>
+		<maven-resources-plugin.version>2.4.3</maven-resources-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -139,6 +141,29 @@
 							<goals>
 								<goal>jar</goal>
 							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${maven-resources-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>copy-resources</id>
+							<phase>validate</phase>
+							<goals>
+								<goal>copy-resources</goal>
+							</goals>
+							<configuration>
+								<outputDirectory>${basedir}\target\classes\</outputDirectory>
+								<resources>
+									<resource>
+										<directory>${basedir}\src\main\resources\</directory>
+										<filtering>true</filtering>
+									</resource>
+								</resources>
+							</configuration>
 						</execution>
 					</executions>
 				</plugin>
