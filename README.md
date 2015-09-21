@@ -21,10 +21,37 @@ OrmType: enum           default value OrmType.Hibernate;
 
 # How to use
 
+[a simple example](https://github.com/JetQin/orm_example) 
+
+*  Create a property file to setup database parameter and hibernate parameter
+   ``` 
+	connection.driver_class = oracle.jdbc.OracleDriver
+	connection.url = jdbc:oracle:thin:@localhost:1521:XE
+	connection.username = rdm
+	connection.password = 123456
+	hibernate.dialect = org.hibernate.dialect.Oracle9iDialect
+	
+	hibernate.dbcp.initialSize = 10
+	hibernate.dbcp.maxActive = 100
+	hibernate.dbcp.maxIdle = 10
+	hibernate.dbcp.minIdle = 10
+   ```
+* Add @EnableOrmConfiguration at the main configuration file
+  
+  ```
+   @EnableOrmConfiguration(packageToScan="com.example.domain",showSql=false,enableCache=true)
+  
+  ```
+* Add package "com.github.jetqin.configuration*" to componentScan parameter
+  ```
+   @ComponentScan(basePackages={"com.example.*","com.github.jetqin.configuration*"})
+   
+  ```
+##### Below is an example configuration
 ```
-@ComponentScan
-@EnableAutoConfiguration
-@EnableOrmConfiguration(showSql=false,packageToScan="com.usee",type=OrmType.Hibernate)
+@Configuration
+@ComponentScan(basePackages={"com.example.*","com.github.jetqin.configuration*"})
+@EnableOrmConfiguration(showSql=false,packageToScan="com.example.domain",enableCache=true)
 public class Application {
 
     public static void main(String[] args) {
