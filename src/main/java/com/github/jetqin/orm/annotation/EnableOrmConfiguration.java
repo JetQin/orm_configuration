@@ -37,4 +37,6 @@ public @interface EnableOrmConfiguration
 	
 	boolean showSql() default false;
 	
+	boolean enableCache() default true;
+	
 }

@@ -12,7 +12,6 @@ import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.type.AnnotationMetadata;
 
 import com.github.jetqin.orm.configuration.HibernateOrmConfiguration;
-import com.github.jetqin.orm.configuration.JpaOrmConfiguration;
 import com.github.jetqin.orm.constants.OrmType;
 
 /** 
@@ -34,10 +33,6 @@ public class OrmConfigurationSelector implements ImportSelector
 		if(OrmType.Hibernate.equals(type))
 		{
 			return new String[]{HibernateOrmConfiguration.class.getName()};
-		}
-		if(OrmType.JPA.equals(type))
-		{
-			return new String[]{JpaOrmConfiguration.class.getName()};
 		}
 		throw new IllegalArgumentException();
 		

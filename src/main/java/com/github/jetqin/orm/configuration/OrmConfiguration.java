@@ -8,8 +8,8 @@
  */
 package com.github.jetqin.orm.configuration;
 
+import java.util.Map;
 import java.util.Properties;
-
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -18,9 +18,13 @@ import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportAware;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.transaction.PlatformTransactionManager;
+
+import com.github.jetqin.orm.annotation.EnableOrmConfiguration;
 
 import lombok.Data;
 
@@ -33,14 +37,16 @@ import lombok.Data;
  */
 
 @Configuration
-public @Data abstract class OrmConfiguration
+public @Data abstract class OrmConfiguration implements ImportAware
 {
 
 	private static final String CONNECTION_DRIVER_CLASS = "connection.driver_class";
+	private static final String CONNECTION_PROVIDER_CLASS = "connection.provider_class";
 	private static final String CONNECTION_URL = "connection.url";
 	private static final String CONNECTION_USERNAME = "connection.username";
 	private static final String CONNECTION_PASSWORD = "connection.password";
 	private static final String HIBERNATE_DIALECT = "hibernate.dialect";
+	private static final String HIBERNATE_SHOW_SQL = "show_sql";
 
 	private static final String HIBERNATE_DBCP_INITIAL_SIZE = "hibernate.dbcp.initialSize";
 	private static final String HIBERNATE_DBCP_MAX_ACTIVE = "hibernate.dbcp.maxActive";
@@ -52,6 +58,7 @@ public @Data abstract class OrmConfiguration
 	private static final String HIBERNATE_CACHE_USE_QUERY_CACHE = "hibernate.cache.use_query_cache";
 
 	// for Hibernate 4
+	private static final String HIBERNATE_DBCP_CONNECTION_PROVIDER = "org.hibernate.connection.DBCPConnectionProvider";
 	private static final String ORG_HIBERNATE_CACHE_EHCACHE_EH_CACHE_REGION_FACTORY = "org.hibernate.cache.ehcache.EhCacheRegionFactory";
 
 	private boolean enableConnectionPool = true;
@@ -72,7 +79,7 @@ public @Data abstract class OrmConfiguration
 	{
 		BasicDataSource datasouce = new BasicDataSource();
 		datasouce.setUrl(env.getProperty(CONNECTION_URL));
-		datasouce.setDriverClassName(CONNECTION_DRIVER_CLASS);
+		datasouce.setDriverClassName(env.getProperty(CONNECTION_DRIVER_CLASS));
 		datasouce.setUsername(env.getProperty(CONNECTION_USERNAME));
 		datasouce.setPassword(env.getProperty(CONNECTION_PASSWORD));
 		return datasouce;
@@ -100,6 +107,8 @@ public @Data abstract class OrmConfiguration
 	{
 		Properties properties = new Properties();
 		properties.put(HIBERNATE_DIALECT, env.getProperty(HIBERNATE_DIALECT));
+		properties.put(CONNECTION_PROVIDER_CLASS, HIBERNATE_DBCP_CONNECTION_PROVIDER);
+		properties.put(HIBERNATE_SHOW_SQL, showSql);
 		
 		if (enableCache)
 		{
@@ -116,5 +125,20 @@ public @Data abstract class OrmConfiguration
 			properties.put(HIBERNATE_DBCP_MIN_IDLE, env.getProperty(HIBERNATE_DBCP_MIN_IDLE));
 		}
 		return properties;
+	}
+	
+	public void setImportMetadata(AnnotationMetadata importMetadata)
+	{
+		if (env.getProperty(HIBERNATE_DIALECT) == null || env.getProperty(CONNECTION_USERNAME) == null
+				|| env.getProperty(CONNECTION_PASSWORD) == null || env.getProperty(CONNECTION_DRIVER_CLASS) == null
+				|| env.getProperty(CONNECTION_URL) == null)
+		{
+			throw new IllegalArgumentException("properties is not completed! check properties (hibernate.dialect, "
+					+ "connection.username, connection.password, connection.driver, connection.url)");
+		}
+		Map<String, Object> metaData = importMetadata.getAnnotationAttributes(EnableOrmConfiguration.class.getName());
+		enableCache = (Boolean)metaData.get("enableCache");
+		packagesToScan = (String[]) metaData.get("packageToScan");
+		showSql = (Boolean)(metaData.get("showSql"));
 	}
 }

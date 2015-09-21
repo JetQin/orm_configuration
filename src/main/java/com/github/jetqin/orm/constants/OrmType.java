@@ -19,6 +19,5 @@ package com.github.jetqin.orm.constants;
  */
 public enum OrmType
 {
-	Hibernate,
-	JPA;
+	Hibernate;
 }
