@@ -3,7 +3,7 @@
 
 	<groupId>com.github.jetqin</groupId>
 	<artifactId>orm</artifactId>
-	<version>1.1.1-SNAPSHOT</version>
+	<version>1.1.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<description>Orm configuration using java config</description>
 
@@ -35,7 +35,7 @@
 		<common-dbcp2.version>2.0</common-dbcp2.version>
 		<ehcahe.version>2.6.11</ehcahe.version>
 		<lombok.version>1.16.6</lombok.version>
-		<hibernate.version>4.3.5.Final</hibernate.version>
+		<hibernate.version>4.3.11.Final</hibernate.version>
 
 		<org.sonatype.plugins.version>1.6.5</org.sonatype.plugins.version>
 		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
