@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import java.lang.reflect.ParameterizedType;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -30,7 +31,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-
 /**
  * @author jet
  *
@@ -39,10 +39,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public abstract class AbstractDataService<T extends Serializable, PK extends Serializable> extends HibernateDaoSupport
 {
-	
-    private SessionFactory sessionFactory;
-	
+
+	private SessionFactory sessionFactory;
+
 	private Class<T> clazz;
+
+	public AbstractDataService()
+	{
+		this.clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+	}
 
 	public void setClazz(final Class<T> clazzToSet)
 	{
@@ -54,43 +59,41 @@ public abstract class AbstractDataService<T extends Serializable, PK extends Ser
 	{
 		return (T) getCurrentSession().get(clazz, pk);
 	}
-	
+
 	@Transactional
 	protected List<T> findBySql(String sql)
 	{
 		Query query = getCurrentSession().createQuery(sql);
-		return query.list()  ;
-		
+		return query.list();
+
 	}
 
 	@Transactional
 	protected T findEntityBySql(String sql)
 	{
 		Query query = getCurrentSession().createQuery(sql);
-		return (T) query.uniqueResult()  ;
-		
+		return (T) query.uniqueResult();
+
 	}
-	
 
 	@Transactional
 	protected List<T> findByNamedQuery(Query query)
 	{
-		return null == query.list() ? null : query.list() ;
-		
+		return null == query.list() ? null : query.list();
+
 	}
-	
 
 	public List<T> findByParameter(Map parameters)
 	{
-		
+
 		DetachedCriteria criteria = DetachedCriteria.forClass(clazz);
 		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		criteria.add(Restrictions.allEq(parameters));
 		List<T> results = (List<T>) getHibernateTemplate().findByCriteria(criteria);
 		return results;
-		
+
 	}
-	
+
 	public T findEntityByParameter(Map parameters)
 	{
 
@@ -98,7 +101,7 @@ public abstract class AbstractDataService<T extends Serializable, PK extends Ser
 		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		criteria.add(Restrictions.allEq(parameters));
 		List<T> results = (List<T>) getHibernateTemplate().findByCriteria(criteria);
-		if(null != results && results.size() > 0)
+		if (null != results && results.size() > 0)
 		{
 			return results.get(0);
 		}
@@ -123,13 +126,12 @@ public abstract class AbstractDataService<T extends Serializable, PK extends Ser
 		return totalSize;
 	}
 
-
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void save(final T entity)
 	{
 		getCurrentSession().save(entity);
 	}
-	
+
 	@Transactional(propagation = Propagation.REQUIRED)
 	protected T saveAndGet(final T entity)
 	{
@@ -143,7 +145,7 @@ public abstract class AbstractDataService<T extends Serializable, PK extends Ser
 	{
 		return (T) getCurrentSession().merge(entity);
 	}
-	
+
 	@Transactional
 	public void delete(final T entity)
 	{
@@ -160,7 +162,7 @@ public abstract class AbstractDataService<T extends Serializable, PK extends Ser
 	{
 		return currentSession();
 	}
-	
+
 	@Resource(name = "sessionFactory")
 	public void setLocalSessionFactory(SessionFactory sessionFactory)
 	{
