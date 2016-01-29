@@ -87,3 +87,5 @@ hibernate.dbcp.minIdle = 10
 </dependency>
 
 ```
+
+# Reference [Spring enable annotation](http://www.javacodegeeks.com/2015/04/spring-enable-annotation-writing-a-custom-enable-annotation.html)
